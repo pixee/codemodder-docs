@@ -125,6 +125,7 @@ const config = {
         copyright: `Copyright © 2023 Pixee Inc.`,
       },
       prism: {
+        additionalLanguages: ['java', 'python'],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },

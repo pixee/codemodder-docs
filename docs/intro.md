@@ -28,14 +28,15 @@ The easiest codemod we can imagine writing is to replace all insecure (re: predi
 /** Turns {@link java.util.Random} into {@link java.security.SecureRandom}. */
 @Codemod(
     id = "pixee:java/secure-random",
-    author = "arshan@pixee.ai",
     reviewGuidance = ReviewGuidance.MERGE_WITHOUT_REVIEW)
 public final class SecureRandomCodemod extends SarifPluginJavaParserChanger<ObjectCreationExpr> {
 
   private static final String DETECTION_RULE =
-      "rules:\n" + 
-      "  - id: secure-random\n" + 
-      "    pattern: new Random()";
+      """
+      rules: 
+        - id: secure-random 
+          pattern: new Random()
+      """;
 
   @Inject
   public SecureRandomCodemod(@SemgrepScan(yaml = DETECTION_RULE) RuleSarif sarif) {

@@ -1,6 +1,6 @@
 # Codemodder Documentation
 
-This repository holds the documentation site at [codemodder.io](codemodder.io). It covers information related to building, testing, running and operationalizing codemods built with the codemodder framework across all supported languages.
+This repository holds the documentation site at [codemodder.io](https://docs.codemodder.io). It covers information related to building, testing, running and operationalizing codemods built with the codemodder framework across all supported languages.
 
 # Building and Running
 

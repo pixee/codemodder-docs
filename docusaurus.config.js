@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Codemodder',
-  tagline: 'Code changes',
+  tagline: 'The best codemods',
   url: 'https://codemodder.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -17,7 +17,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'io.codemodder', // Usually your GitHub org/user name.
-  projectName: 'codemodder-docs', // Usually your repo name.
+  projectName: 'internal-codemodder-docs', // Usually your repo name.
   deploymentBranch: 'main',
 
   // Even if you don't use internalization, you can use this field to set useful

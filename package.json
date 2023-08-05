@@ -1,6 +1,6 @@
 {
-  "name": "pixee-doc-site",
-  "version": "0.0.0",
+  "name": "codemodder-doc-site",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",

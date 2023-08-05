@@ -16,7 +16,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'io.codemodder', // Usually your GitHub org/user name.
+  organizationName: 'pixee', // Usually your GitHub org/user name.
   projectName: 'internal-codemodder-docs', // Usually your repo name.
   deploymentBranch: 'main',
 

@@ -15,7 +15,7 @@ Codemodder offers:
 * **Storytelling as a first class feature**. Automating code changes isn't very helpful without the necessary communication to the other developers on your team.
 * **The quietest changes possible**. There's some distance between "making a change" and "making a change that is easy to approve" and our framework guides you towards the latter.
 
-Codemodder is a good framework to choose if your problem is one level complex than linters can detect and fix, or require more or better storytelling because the issues they tackle are not straightforward (for instance, like advanced security issues.) Most of the feedback experienced developers give to junior developers fits into this bucket, but we offer many community codemods that solve the easy stuff too.
+Codemodder is a good framework to choose if your problem is one level complex than linters can detect and fix, or require more or better storytelling because the issues they tackle are not straightforward (for instance, like advanced security issues.) Most of the feedback experienced developers give to junior developers fits into this bucket, but we offer many community codemods that solve the easy stuff too. 
 
 # An example
 

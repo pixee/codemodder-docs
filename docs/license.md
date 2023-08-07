@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Licensing
 
-The philosophy of our licensing is relatively simple. We want to offer an open source license that allows people to write their own codemods, use them for the internal purposes and solve their own problems, publish them widely if desired, but prevent commercial entities from leveraging our continued investment at our expense for their commercial gain.  
+Our licensing philosophy is quite simple. We provide an open source license, enabling users to create and use their own codemods for internal needs, or even share them publicly if they wish. This approach also enables us to *work in public*. However, we aim to prevent commercial organizations from leveraging our continued investment for their own commercial gain.
 
 ## Codemodder Frameworks
 All of our codemodder frameworks, the libraries for each language that are used by people to build codemods, are available as Affero GPL (AGPL).

@@ -19,7 +19,7 @@ Codemodder is a good framework to choose if your problem is one level more compl
 
 # An example
 
-The easiest codemod we can imagine writing is to replace all insecure (re: predictable) sources of randomness with secure (re: unpredictable) sources. Here we show what that codemod might look like across languages:
+The easiest codemod we can imagine writing is to replace all insecure (predictable) sources of randomness with secure (unpredictable) sources. Here we show what that codemod might look like across languages:
 
 <Tabs>
   <TabItem value="example-java" label="Java" default>
@@ -65,16 +65,67 @@ The codemodder framework then hands off all those locations Semgrep found to the
 For more real-world examples, check out our [core Java codemods](https://github.com/pixee/codemodder-java/tree/main/core-codemods), which are codemods maintained by the framework and made for general use. We also provide utilities for building and testing these codemods to make the whole process seamless.
 
   </TabItem>
+  <TabItem value="example-python" label="Python">
+
+```python
+class SecureRandom(SemgrepCodemod, BaseTransformer):
+    METADATA = CodemodMetadata(
+        DESCRIPTION="Replaces random.{func} with more secure secrets library functions.",
+        NAME="secure-random",
+        REVIEW_GUIDANCE=ReviewGuidance.MERGE_WITHOUT_REVIEW,
+    )
+    YAML_FILES = [
+        "secure_random.yaml",
+    ]
+    CHANGE_DESCRIPTION = "Switch use of random module functions secrets.SystemRandom()"
+    CHANGES_IN_FILE: List = []
+
+    def __init__(self, codemod_context: CodemodContext, file_context: FileContext):
+        SemgrepCodemod.__init__(self, file_context)
+        BaseTransformer.__init__(
+            self,
+            codemod_context,
+            self._results,
+            file_context.line_exclude,
+            file_context.line_include,
+        )
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call):
+        pos_to_match = self.get_metadata(self.METADATA_DEPENDENCIES[0], original_node)
+        if self.filter_by_result(
+            pos_to_match
+        ) and self.filter_by_path_includes_or_excludes(pos_to_match):
+            line_number = pos_to_match.start.line
+            self.CHANGES_IN_FILE.append(
+                Change(str(line_number), self.CHANGE_DESCRIPTION).to_json()
+            )
+            AddImportsVisitor.add_needed_import(self.context, "secrets")
+            RemoveImportsVisitor.remove_unused_import_by_node(
+                self.context, original_node
+            )
+            new_call = cst.Call(
+                func=cst.Attribute(
+                    value=cst.parse_expression("secrets.SystemRandom()"),
+                    attr=cst.Name(value=get_call_name(original_node)),
+                ),
+                args=original_node.args,
+            )
+            return new_call
+        return updated_node
+```
+
+You can see this code [live on GitHub](https://github.com/pixee/codemodder-python/blob/main/codemodder/codemods/secure_random.py).
+
+This codemod uses [Semgrep](https://semgrep.dev/) to detect cases where unsafe random methods are used. The codemod itself is implemented using the [libCST framework](https://github.com/Instagram/LibCST#readme).
+
+For more real-world examples, check out our [core Python codemods](https://github.com/pixee/codemodder-python/tree/main/codemodder/codemods), which are codemods maintained by the framework and made for general use. We also provide utilities for building and testing codemods to make the whole process seamless. See the [Python codemodder repo](https://github.com/pixee/codemodder-python/) for more details.
+
+⚠️ The Python codemodder API is still under heavy development and is subject to breaking changes. ⚠️
+
+  </TabItem>
   <TabItem value="example-javascript" label="JavaScript">
 
 ```
-Coming soon!
-```
-
-  </TabItem>
-  <TabItem value="example-python" label="Python">
-
-```    
 Coming soon!
 ```
 

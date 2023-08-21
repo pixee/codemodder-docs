@@ -56,13 +56,13 @@ public final class SecureRandomCodemod extends SarifPluginJavaParserChanger<Obje
 }
 ```
 
-You can see this code [live on GitHub](https://github.com/pixee/codemodder-java/blob/main/codemodder-community-codemods/src/main/java/io/codemodder/codemods/SecureRandomCodemod.java).
+You can see this code [live on GitHub](https://github.com/pixee/codemodder-java/blob/main/core-codemods/src/main/java/io/codemodder/codemods/SecureRandomCodemod.java).
 
 This codemod, which would be easy to implement even without the need for a fancy static analysis tool, uses [Semgrep](https://semgrep.dev/) to find all the constructor calls for `java.util.Random`. These are the locations we want to change to `SecureRandom` instead.
 
 The codemodder framework then hands off all those locations Semgrep found to the `onResultfound()` method, where the code just has to change the type and add the missing import. It takes care of a lot of annoying work -- the execution of static analysis tools, the parsing of its results, aligning the results to the code that handles them, the formatting of the resulting code, etc. All you specify is how to find the code to change and what change do you want to make. We handle the rest.
 
-For more real-world examples, check out our [Java community codemods](https://github.com/pixee/codemodder-java/codemodder-community-codemods), which are codemods maintained by the framework and made for general use. We also provide utilities for building and testing these codemods to make the whole process seamless.
+For more real-world examples, check out our [core Java codemods](https://github.com/pixee/codemodder-java/tree/main/core-codemods), which are codemods maintained by the framework and made for general use. We also provide utilities for building and testing these codemods to make the whole process seamless.
 
   </TabItem>
   <TabItem value="example-javascript" label="JavaScript">

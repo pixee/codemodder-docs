@@ -16,9 +16,9 @@ codemodder is a collection of language-specific frameworks for building codemods
 
 At a high level, we are both codemod development tools (except they call them "recipes"). There are multiple differences in the technical approach between [OpenRewrite](https://github.com/openrewrite/) and codemodder. While we appreciate their work on building a complete stack for codemod development, we're focused on orchestration of idiomatic community tools and integration with other tools.
 
-### How does codemodder relate to pixeebot?
+### How does codemodder relate to Pixeebot?
 
-The team behind [pixeebot](https://pixee.ai/) delivers their code improvements using codemodder-based codemods and sponsor the development of codemodder.
+The team behind [Pixeebot](https://pixee.ai/) delivers code improvements using codemodder-based codemods and sponsors the development of codemodder.
 
 ### How can I make codemods for language X|Y|Z?
 

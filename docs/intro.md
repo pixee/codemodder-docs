@@ -68,50 +68,26 @@ For more real-world examples, check out our [core Java codemods](https://github.
   <TabItem value="example-python" label="Python">
 
 ```python
-class SecureRandom(SemgrepCodemod, BaseTransformer):
-    METADATA = CodemodMetadata(
-        DESCRIPTION="Replaces random.{func} with more secure secrets library functions.",
-        NAME="secure-random",
-        REVIEW_GUIDANCE=ReviewGuidance.MERGE_WITHOUT_REVIEW,
-    )
-    YAML_FILES = [
-        "secure_random.yaml",
-    ]
-    CHANGE_DESCRIPTION = "Switch use of random module functions secrets.SystemRandom()"
-    CHANGES_IN_FILE: List = []
+class SecureRandom(SemgrepCodemod):
+    NAME = "secure-random"
+    REVIEW_GUIDANCE = ReviewGuidance.MERGE_WITHOUT_REVIEW
+    DESCRIPTION = "Replaces random.{func} with more secure secrets library functions."
 
-    def __init__(self, codemod_context: CodemodContext, file_context: FileContext):
-        SemgrepCodemod.__init__(self, file_context)
-        BaseTransformer.__init__(
-            self,
-            codemod_context,
-            self._results,
-            file_context.line_exclude,
-            file_context.line_include,
-        )
+    @classmethod
+    def rule(cls):
+        return """
+        rules:
+          - patterns:
+            - pattern: random.$F(...)
+            - pattern-inside: |
+                import random
+                ...
+        """
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call):
-        pos_to_match = self.get_metadata(self.METADATA_DEPENDENCIES[0], original_node)
-        if self.filter_by_result(
-            pos_to_match
-        ) and self.filter_by_path_includes_or_excludes(pos_to_match):
-            line_number = pos_to_match.start.line
-            self.CHANGES_IN_FILE.append(
-                Change(str(line_number), self.CHANGE_DESCRIPTION).to_json()
-            )
-            AddImportsVisitor.add_needed_import(self.context, "secrets")
-            RemoveImportsVisitor.remove_unused_import_by_node(
-                self.context, original_node
-            )
-            new_call = cst.Call(
-                func=cst.Attribute(
-                    value=cst.parse_expression("secrets.SystemRandom()"),
-                    attr=cst.Name(value=get_call_name(original_node)),
-                ),
-                args=original_node.args,
-            )
-            return new_call
-        return updated_node
+    def on_result_found(self, original_node, updated_node):
+        self.remove_unused_import(original_node)
+        self.add_needed_import("secrets")
+        return self.update_call_target(updated_node, "secrets.SystemRandom()")
 ```
 
 You can see this code [live on GitHub](https://github.com/pixee/codemodder-python/blob/main/codemodder/codemods/secure_random.py).

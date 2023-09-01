@@ -6,7 +6,7 @@ sidebar_position: 4
 
 ### Can you help me make a codemod?
 
-Yes! We're passionate about this and would love to help. We're opening our Slack soon so we can talk about it there!
+Yes! We're passionate about this and would love to help. Join the Pixee community [on Slack!](https://join.slack.com/t/openpixee/shared_invite/zt-1pnk7jqdd-kfwilrfG7Ov4M8rorfOnUA)
 
 ### How does codemodder compare to jscodeshift/JavaParser/Semgrep/libcst?
 

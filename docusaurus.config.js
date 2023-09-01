@@ -70,7 +70,8 @@ const config = {
         title: 'Codemodder',
         logo: {
           alt: 'Codemodder',
-          src: 'img/logo.png',
+          src: 'img/icon_black.png',
+          srcDark: 'img/icon_white.png',
         },
         items: [
           {

@@ -22,6 +22,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Poppins-regular';
+  src: url('./../../static/fonts/Poppins-Regular.woff2') format('woff2'),
+    url('./../../static/fonts/Poppins-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: 'Source Sans Pro';
   color: var(--ifm-color-text);
@@ -38,7 +46,7 @@ body {
 }
 
 .navbar__title {
-  font-family: 'Poppins-thin', sans-serif;
+  font-family: 'Poppins-regular', sans-serif;
   font-size: 20px;
 }
 
@@ -224,6 +232,7 @@ body {
   --ifr-color-neutral-80: #2c2541;
   --ifr-color-neutral-90: #1c1533;
   --ifr-color-neutral-white: #fff;
+  --ifm-heading-font-family: 'CustomFont', sans-serif;
 }
 
 /* Dark mode styles */
@@ -237,10 +246,6 @@ body {
   --ifm-color-primary-lightest: #ffffff;
   --ifm-color-text: #e3e3e3;
 }
-
-/* html[data-theme='dark'] {
-  --ifm-background-color: #1c1533;
-} */
 
 [data-theme='dark'] .navbar {
   background-color: #242526;

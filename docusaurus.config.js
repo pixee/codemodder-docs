@@ -65,11 +65,10 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Codemodder by Pixee',
         logo: {
           alt: 'Codemodder',
-          src: 'img/icon_black.png',
-          srcDark: 'img/icon_white.png',
+          src: 'img/CodemodderLM.png',
+          srcDark: 'img/CodemodderDM.png',
         },
 
         items: [

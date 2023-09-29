@@ -271,7 +271,7 @@ body {
 /* light mode default */
 .theme-doc-sidebar-item-category li .menu__link,
 .theme-doc-sidebar-menu li .menu__link {
-  border-left: 4px solid #fbfafb;
+  border-left: 4px solid transparent;
   color: var(--ifr-color-neutral-90);
   font-weight: 400;
 }
@@ -303,7 +303,7 @@ body {
 /* dark mode default */
 [data-theme='dark'] .theme-doc-sidebar-item-category li .menu__link,
 [data-theme='dark'] .theme-doc-sidebar-menu li .menu__link {
-  border-left: 4px solid #1c1533;
+  border-left: 4px solid transparent;
   color: var(--ifr-color-neutral-10);
   font-weight: 400;
 }

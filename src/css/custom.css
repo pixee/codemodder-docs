@@ -57,6 +57,13 @@ body {
 }
 
 /* Nav-bar styles*/
+
+.navbar,
+.navbar__fixed-top {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
 .header-routes {
   color: #1c1533;
   font-size: 16px;

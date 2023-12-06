@@ -1,12 +1,14 @@
 ---
 sidebar_position: 1
+title: Java Codemodder
 ---
 
-# Java
+## Quick Links
 
-Each codemodder language framework offers its own "user experience". 
+Repository: [https://github.com/pixee/codemodder-java](https://github.com/pixee/codemodder-java)
 
-The [Java codemodder repo](https://github.com/pixee/codemodder-java) offers:
- * Maven/Gradle instructions
- * JavaDoc
- * A set of reference / "core" codemods
+JavaDoc: [https://www.javadoc.io/doc/io.codemodder](https://www.javadoc.io/doc/io.codemodder)
+
+## Tutorial
+
+This section contains a tutorial on how to build your own Java codemods.

@@ -30,10 +30,9 @@ implementation("io.codemodder:codemodder-base:$VERSION")
 
 ## Decide how to find the code we want to change
 
-The codemodder strategy is to orchestrate idiomatic tools. So, our next step is to choose what static analysis tool (if any) we'll use to _find_ the code we want to change. Some simple changes may not require anything more than the basic AST traversal features provided by JavaParser (which is in the base dependency), while some queries may require the use of proper static analysis tools.
+Codemodder is designed to leverage common third-party tools to identify issues to fix. So, our next step is to choose which static analysis tool (if any) we'll use to _find_ the problem we want to fix. Some simple changes may not require anything more than the basic AST traversal features provided by JavaParser (which is in the base dependency). Other more complicated changes will require the use of third-party static analysis tools.
 
-A good, middle-of-the-road option for many use cases is to use [Semgrep](https://semgrep.dev) to find the code we want to change. This tool is excellent at finding different shapes of code, with tools for suppressing common false positives cases. Let's add the Semgrep plugin to our build so we can act on Semgrep findings.
-
+A good option for many use cases is to use [Semgrep](https://semgrep.dev) to find the code we want to change. This tool is excellent at finding different shapes of code, with tools for suppressing common false positives cases. Let's add the Semgrep plugin to our build so we can act on Semgrep findings.
 
 <Tabs>
 <TabItem value="gradle-semgrep" label="Gradle">

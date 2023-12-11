@@ -31,10 +31,10 @@ Here's the test for our `ReadLinesCodemod`:
 final class ReadLinesCodemodTest implements CodemodTestMixin {}
 ```
 
-That's it! Now, there's some convention to explain.
+That's it!
 
 This mixin expects a directory called `readlines` in the test classpath (e.g., `src/test/resources/readlines`). This directory can have multiple file pairs that follow a name pattern like `ArbitraryTestName.java.before` and `ArbitraryTestName.java.after`. For each of these pairs, the codemod will be run on the `.before` file, and the output should match the `.after` file. These files end up being your test cases, and should be thorough.
 
-You can also specify if you expect a codemod to be injected a dependency into the project manifest when a change is made.
+You can also specify if you expect a codemod to be injected as a dependency into the project manifest when a change is made.
 
 

@@ -5,11 +5,14 @@ title: Building & Running Your Codemod
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-There are 3 steps for turning our codemod type into a runnable codemod artifact -- creating the CLI entry point, pointing to that entry point!
+There are 2 steps for turning our codemod type into a runnable codemod artifact:
+
+* Creating the CLI entry point code
+* Configuring our build tool to add that entry point to the manifest
 
 ## Create the CLI Entry Point
 
-Codemodder is a library for building codemod CLIs... so where is the CLI part? We need to create a small piece of code to actually invoke our codemods. Let's create a new type, `App.java`:
+Codemodder is a library for building codemods. We need to write a small piece of code to enable our codemods to be invoked using a CLI entry point. Let's create a new type, `App.java`:
 
 ```java
 package io.codemodder.sample;

@@ -5,7 +5,7 @@ title: Writing our First Codemod
 
 Now, let's write our first codemod! 
 
-The newer methods in `java.nio.file.Files` replaced the need for some of community-loved APIs in `org.apache.commons.io.FileUtils`. So, let's write a codemod to move `org.apache.commons.io.FileUtils#readLines()` to `java.nio.file.Files.readAllLines()`. The diffs should look something like this:
+The newer methods in `java.nio.file.Files` removed the need for some community-provided APIs in `org.apache.commons.io.FileUtils`. So, let's write a codemod to move `org.apache.commons.io.FileUtils#readLines()` to `java.nio.file.Files.readAllLines()`. The diffs should look something like this:
 
 ```diff
 - import org.apache.commons.io.FileUtils; // remove the import if possible
@@ -19,7 +19,7 @@ The newer methods in `java.nio.file.Files` replaced the need for some of communi
 
 ## Step #1: Write the Semgrep to find the calls we want to change
 
-The first thing we need is some Semgrep to find all the invocations of `FileUtils#readLines()`. The [Semgrep Playground](https://semgrep.dev/playground/new) is a great place to iterate on new Semgrep queries. They have [plenty of docs](https://semgrep.dev/docs/) that we won't try to re-create here, so let's hand-wave a bit here and show you the finished product:
+The first thing we need is a Semgrep query to find all the invocations of `FileUtils#readLines()`. The [Semgrep Playground](https://semgrep.dev/playground/new) is a great place to iterate on new Semgrep queries. They have [plenty of docs](https://semgrep.dev/docs/) that we won't try to re-create here, so let's just show you the finished product:
 
 ```yaml
 rules:
@@ -58,9 +58,9 @@ public final class ReadLinesCodemod extends SarifPluginJavaParserChanger<MethodC
 }
 ```
 
-Each codemod needs a `@Codemod` annotation. This gives some necessary metadata for end users and will eventually feed a more robust CLI experience.
+First, each codemod needs a `@Codemod` annotation. This gives some necessary metadata for end users and will eventually feed a more robust CLI experience.
 
-Second, notice the generic component of `SarifPluginJavaParserChanger`. This generic tells our framework that the Semgrep query returns the locations of Java method call expressions. If the SARIF points to a location that doesn't point to a method call, the callback won't occur. Let's see how to inject the Semgrep SARIF into the type.
+Second, notice the generic component of `SarifPluginJavaParserChanger`. This generic tells our framework that the Semgrep query returns the locations of Java method call expressions. If the SARIF points to a location that doesn't point to a method call, the callback won't execute. Let's see how to inject the Semgrep SARIF into the type.
 
 ### The Injection
 
@@ -187,10 +187,10 @@ public final class ReadLinesCodemod extends SarifPluginJavaParserChanger<MethodC
 
 ## Step #3: Add the storytelling
 
-Well, we lied a little. We wrote all the _code_, but one of the philosophies of codemodder is that the storytelling around the changes we make has to be good. Without good storytelling, people won't know the purpose of value of the changes being made.
+Well, we lied a little. We wrote all the _code_, but one of the philosophies of codemodder is that we need to tell a good story about the changes we make. Without good storytelling, people won't know the purpose or value of the changes being made.
 
 ### Provide Storytelling From the Classpath (Recommended)
-We offered a shortcut for folks who don't want to main big blocks of text in a Java file (like us.) You can provide a [CodemodReporterStrategy](https://www.javadoc.io/doc/io.codemodder/codemodder-base/latest/io/codemodder/CodemodReporterStrategy.html) that reports based on text from a predictable location on the classpath. This is an alternative to storing data inline to the Java source code of your codemod. It's easier to maintain this "data" outside of code, so we prefer a simple mechanism for doing that. Both the files read are expected to be in `/com/acme/MyCodemod/` (assuming that's the name of your codemod type.)
+We provide a shortcut for folks who don't want to write and maintain big blocks of text in a Java file (like us). You can provide a [CodemodReporterStrategy](https://www.javadoc.io/doc/io.codemodder/codemodder-base/latest/io/codemodder/CodemodReporterStrategy.html) that builds reports based on text from a well-defined location on the classpath. This is an alternative to storing data inline to the Java source code of your codemod. It's easier to maintain this "data" outside of code, so we prefer a simple mechanism for doing that. Both the files read are expected to be in `/com/acme/MyCodemod/` (assuming that's the name of your codemod type).
  
 The first expected file in that directory is {@code report.json}. It contains most of the fields we want to report:
 
@@ -205,9 +205,9 @@ The first expected file in that directory is {@code report.json}. It contains mo
 }
 ```
 
-The second file is `description.md`, and it provides last field needed by a `CodemodReporterStrategy` is the description of the codemod itself. This is expected to be a bigger piece of text, and thus it is stored in a separate file where it can be easily edited with an IDE supporting markdown.
+The second file is `description.md`, and it provides a description of the codemod's purpose and an exploration of the changes it makes. It's expected to contain more verbose text, so it is stored in a separate file where it can be easily edited with an IDE supporting markdown.
 
-Thus, in a typical Java project, using this `CodemodReporterStrategy` would mean your artifact would retain at least these 3 files:
+Thus, in a typical Java project, using this `CodemodReporterStrategy` would mean your artifact would include at least these 3 files:
 
  - src/main/java/com/acme/MyCodemod.java
  - src/main/resources/com/acme/MyCodemod/report.json
@@ -233,7 +233,7 @@ If you don't care about storytelling, you can just use `CodemodReporterStrategy.
 
 ## Back to our example
 
-So, for our codemod we're building, we'll choose the classpath reporter strategy, so we're going to add those two files:
+For our codemod, we'll choose the classpath reporter strategy, so we're going to add those two files:
 
 Here's `src/main/resources/io/codemodder/sample/ReadLinesCodemod/report.json`:
 ```json

@@ -112,5 +112,6 @@ Coming soon!
 
 ### What languages does Codemodder support?
 * Java
+* Python
 * JavaScript (coming soon)
-* Python (coming soon)
+

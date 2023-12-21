@@ -90,11 +90,11 @@ class SecureRandom(SemgrepCodemod):
         return self.update_call_target(updated_node, "secrets.SystemRandom()")
 ```
 
-You can see this code [live on GitHub](https://github.com/pixee/codemodder-python/blob/main/codemodder/codemods/secure_random.py).
+You can see this code [live on GitHub](https://github.com/pixee/codemodder-python/blob/main/src/core_codemods/secure_random.py).
 
 This codemod uses [Semgrep](https://semgrep.dev/) to detect cases where unsafe random methods are used. The codemod itself is implemented using the [libCST framework](https://github.com/Instagram/LibCST#readme).
 
-For more real-world examples, check out our [core Python codemods](https://github.com/pixee/codemodder-python/tree/main/codemodder/codemods), which are codemods maintained by the framework and made for general use. We also provide utilities for building and testing codemods to make the whole process seamless. See the [Python codemodder repo](https://github.com/pixee/codemodder-python/) for more details.
+For more real-world examples, check out our [core Python codemods](https://github.com/pixee/codemodder-python/tree/main/src/core_codemods), which are codemods maintained by the framework and made for general use. We also provide utilities for building and testing codemods to make the whole process seamless. See the [Python codemodder repo](https://github.com/pixee/codemodder-python/) for more details.
 
 ⚠️ The Python codemodder API is still under heavy development and is subject to breaking changes. ⚠️
 

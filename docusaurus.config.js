@@ -130,6 +130,10 @@ const config = {
       src: '/js/loadtags.js',
       async: true,
     },
+    {
+      src: '/js/handle_double_slash.js',
+      async: true,
+    },
   ],
 };
 

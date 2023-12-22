@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Codemodder',
   tagline: 'The best codemods',
-  url: 'https://codemodder.io/',
+  url: 'https://codemodder.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

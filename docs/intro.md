@@ -68,21 +68,20 @@ For more real-world examples, check out our [core Java codemods](https://github.
   <TabItem value="example-python" label="Python">
 
 ```python
-class SecureRandom(SemgrepCodemod):
-    NAME = "secure-random"
-    REVIEW_GUIDANCE = ReviewGuidance.MERGE_WITHOUT_REVIEW
-    DESCRIPTION = "Replaces random.{func} with more secure secrets library functions."
+class SecureRandom(SimpleCodemod):
+    metadata = Metadata(
+        name="secure-random",
+        review_guidance=ReviewGuidance.MERGE_AFTER_CURSORY_REVIEW,
+        summary="Secure Source of Randomness",
+    )
 
-    @classmethod
-    def rule(cls):
-        return """
-        rules:
-          - patterns:
-            - pattern: random.$F(...)
-            - pattern-inside: |
-                import random
-                ...
-        """
+    detector_pattern = """
+        - patterns:
+          - pattern: random.$F(...)
+          - pattern-inside: |
+              import random
+              ...
+    """
 
     def on_result_found(self, original_node, updated_node):
         self.remove_unused_import(original_node)

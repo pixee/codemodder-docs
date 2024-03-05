@@ -80,7 +80,7 @@ const config = {
           },
           {type: 'html',
            position: 'left',
-           value: '<a href="https://docs.pixee.ai" target="_new"><div class="header-routes">PixeeDocs</div><a/>'},
+           value: '<a href="https://docs.pixee.ai" target="_new"><div class="header-routes">PixeeDocs<img src="/static/img/open-in-new.png"></div><a/>'},
           {
             type: 'html',
             position: 'right',

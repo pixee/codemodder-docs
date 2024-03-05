@@ -78,11 +78,14 @@ const config = {
             position: 'left',
             label: 'Home',
           },
+          {type: 'html',
+           position: 'left',
+           value: '<a href="https://docs.pixee.ai" target="_new"><div class="header-routes">PixeeDocs</div><a/>'},
           {
             type: 'html',
             position: 'right',
             value:
-              '<a href="https://github.com/pixee/codemodder-docs" target="_blank"><div class="header-github-link"></div><a/>',
+              '<a href="https://github.com/pixee/" target="_blank"><div class="header-github-link"></div><a/>',
           },
           {
             type: 'html',

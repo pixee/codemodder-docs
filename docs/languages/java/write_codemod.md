@@ -192,7 +192,7 @@ Well, we lied a little. We wrote all the _code_, but one of the philosophies of 
 ### Provide Storytelling From the Classpath (Recommended)
 We provide a shortcut for folks who don't want to write and maintain big blocks of text in a Java file (like us). You can provide a [CodemodReporterStrategy](https://www.javadoc.io/doc/io.codemodder/codemodder-base/latest/io/codemodder/CodemodReporterStrategy.html) that builds reports based on text from a well-defined location on the classpath. This is an alternative to storing data inline to the Java source code of your codemod. It's easier to maintain this "data" outside of code, so we prefer a simple mechanism for doing that. Both the files read are expected to be in `/com/acme/MyCodemod/` (assuming that's the name of your codemod type).
  
-The first expected file in that directory is {@code report.json}. It contains most of the fields we want to report:
+The first expected file in that directory is `{@code report.json}`. It contains most of the fields we want to report:
 
 ```json
 {
